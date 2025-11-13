@@ -64,23 +64,31 @@ export class UserRepository implements UserInterface{
         };
     }
 
-    async login(data: LoginRequestDTO): Promise<Boolean> {
-        const { email,password } = data;
+    async login(data: LoginRequestDTO): Promise<boolean> {
+        const { email, password } = data;
 
-        const userEmailAndPassword = this.model.findOne({
-            email: email
-        });
+        const userEmailAndPassword = await this.model
+            .findOne()
+            .where("email").equals(email)
+            .select("email password");
 
-        if(!userEmailAndPassword){
+        if (!userEmailAndPassword) {
             throw new NotFoundException('Usuário não encontrado');
         }
 
-        const verifyPasswords = await bycrpt.compare(password,(await userEmailAndPassword).password);
-        if(!verifyPasswords){
+        if (password !== userEmailAndPassword.password) {
             throw new BadRequestException('Senhas são diferentes');
         }
 
         return true;
+    }
+
+    async updateTokenByEmailRepository(email: string, token: string){
+        return await this.model.findOneAndUpdate(
+            { email },
+            { $set: { token } },
+            { new: true } 
+        );
     }
 
     async existsById(id: string): Promise<Boolean> {

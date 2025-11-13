@@ -90,9 +90,9 @@ export class UserUseCase{
             username: getIdAndNickname.nickname
         }
 
-        console.log('Id'+getIdAndNickname._id);
-
         const token = await this.jwtService.signAsync(payload);
+
+        await this.service.updateTokenByEmail(data.email, token);
 
         return new LoginResponseDTO(
             "Login realizado com sucesso",

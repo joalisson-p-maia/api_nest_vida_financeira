@@ -49,4 +49,9 @@ export class UserService implements UserInterface{
     async getOneByEmail(email: string): Promise<GetIdAndNicknameDTO> {
        return await this.repository.getOneByEmail(email); 
     }
+
+    async updateTokenByEmail(email: string, token: string) {
+        return await this.repository.updateTokenByEmailRepository(email, token);
+    }
+
 }
