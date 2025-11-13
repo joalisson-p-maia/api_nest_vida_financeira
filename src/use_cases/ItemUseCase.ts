@@ -3,7 +3,7 @@ import { CreateItemDTO } from "src/dtos/item/CreateItemDTO";
 import { getGraphicsByInputAndOutputDTO } from "src/dtos/item/getGraphicsByInputAndOutputDTO";
 import { getGraphicsByInputAndOutputRequestDTO } from "src/dtos/item/getGraphicsByInputAndOutputRequestDTO";
 import { UpdateItemDTO } from "src/dtos/item/UpdateItemDTO";
-import { SearchDataRequestDTO } from "src/dtos/searchDataRequestDTO";
+import { SearchDataRequestDTO } from "src/dtos/SearchDataRequestDTO";
 import { MessageStatusDTO } from "src/dtos/user/MessageStatusDTO";
 import { NotFoundException } from "src/exceptions/NotFoundException";
 import { UnprocessableEntityException } from "src/exceptions/UnprocessableEntityException";
